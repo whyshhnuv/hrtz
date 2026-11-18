@@ -21,7 +21,7 @@ import { DpiStagesCard } from "../cards/dpi-stages/DpiStagesCard";
 import { GamesCard } from "../cards/games/GamesCard";
 import { NewThings } from "../cards/discover/NewThings";
 import { openTest } from "../cards/lab/tests";
-import { isZaopin } from "../models";
+import { isZaopin, ofModel } from "../models";
 import { SignalRgbCard, useSetBySignalRgb } from "../cards/signalrgb/SignalRgbCard";
 import { hzText } from "../rates";
 import { NumberStepper } from "../kit";
@@ -43,6 +43,27 @@ export function SensorPage() {
   const mode = caps.sensorMode;
   const lockedCorded =
     !!mode && ((mode.cordedWhenWired && caps.wired) || (mode.cordedFromHz !== undefined && (s.pollingHz ?? 0) >= mode.cordedFromHz));
+
+  // Polling presets, derived from the actual setting so the polling control and profile changes
+  // stay in sync. Intermediate rates deliberately select neither preset.
+  const performance = (ofModel(device.key, "hidpp/4074") || ofModel(device.key, "sim/4074")) &&
+    s.pollingHz !== undefined && caps.polling?.rates.includes(125) && caps.polling.rates.includes(1000) && (
+      <SettingCard
+        icon={<Rocket20Regular />}
+        title="Performance mode"
+        description="Endurance sets 125 Hz. Max sets 1,000 Hz."
+      >
+        <Choice
+          label="Performance mode"
+          value={s.pollingHz}
+          options={[
+            { value: 125, label: "Endurance" },
+            { value: 1000, label: "Max" },
+          ]}
+          onChange={(pollingHz) => update({ pollingHz })}
+        />
+      </SettingCard>
+    );
 
   const polling = caps.polling && s.pollingHz !== undefined && (
     <SettingCard
@@ -295,6 +316,7 @@ export function SensorPage() {
           {dpi}
           <div id="games-card">{games}</div>
           {polling}
+          {performance}
           {liftOff}
           {sensorMode}
           {sensorAngle}
