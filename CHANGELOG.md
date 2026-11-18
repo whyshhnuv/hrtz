@@ -4,6 +4,11 @@ Newest first. Each version lists what's **New**, **Improved** and **Fixed**. The
 
 Notes for the next version go under `## Unreleased`. Releasing it gives that heading the version and the day's date: `## 0.2.0 — 2026-11-02`.
 
+## Unreleased
+
+### New
+- Experimental Logitech G304/G305 recognition through its LIGHTSPEED receiver, with its single onboard profile, six buttons, DPI stages and polling rates. Read on a real G304; setting writes remain untested. Full backups, restores and factory reset are disabled pending support for its memory layout. G HUB is still needed for features such as macro editing and endurance mode.
+
 ## 0.5.7 — 2026-11-17
 
 ### Improved
