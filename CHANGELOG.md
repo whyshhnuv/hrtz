@@ -7,6 +7,7 @@ Notes for the next version go under `## Unreleased`. Releasing it gives that hea
 ## Unreleased
 
 ### New
+- Added a transparent G304/G305 mouse image with selectable button markers.
 - G304/G305 Performance mode on the Sensor page sets polling to 125 Hz in Endurance or 1,000 Hz in Max.
 - Experimental Logitech G304/G305 recognition through its LIGHTSPEED receiver, with its single onboard profile, six buttons, DPI stages and polling rates. Read on a real G304; setting writes remain untested. Full backups, restores and factory reset are disabled pending support for its memory layout. G HUB is still needed for features such as macro editing and endurance mode.
 
