@@ -11,6 +11,16 @@ Notes for the next version go under `## Unreleased`. Releasing it gives that hea
 - G304/G305 Performance mode on the Sensor page sets polling to 125 Hz in Endurance or 1,000 Hz in Max.
 - Experimental Logitech G304/G305 recognition through its LIGHTSPEED receiver, with its single onboard profile, six buttons, DPI stages and polling rates. Read on a real G304; setting writes remain untested. Full backups, restores and factory reset are disabled pending support for its memory layout. G HUB is still needed for features such as macro editing and endurance mode.
 
+## 0.5.8 — 2026-11-18
+
+### Improved
+- The VXE R1 with a PAW3395 sensor is now tested. A check on a real one passed on its 1K receiver: its DPI stages, their colour and the DPI light, lift-off distance, sensor mode, debounce, motion sync, angle snapping, ripple control and the onboard profiles, with each of its six buttons seen. Thanks to krishiv1545 for the check.
+
+### Fixed
+- On a Zaopin's cable, the mouse check no longer leaves the polling rate changed. With 4,000 Hz set for its receiver, the check set 500 Hz over the cable and couldn't set 4,000 Hz back, since the cable goes up to 1,000 Hz, so every change after it failed too. The check now leaves the polling rate alone on a connection that can't hold the rate the mouse has set.
+- On a Zaopin mouse, if anything is still changed at the end of the mouse check, hrtz now writes back its memory as it was before the check.
+
+
 ## 0.5.7 — 2026-11-17
 
 ### Improved
